@@ -16,11 +16,17 @@ public class DN01_63220294{
             stranicaA = stranicaB;
             stranicaB = temp;
         }
+        
+        // poseben case ce sta obe stranici 2
+        if (stranicaA == 2 && stranicaB == 2){
+            stKvadratov = 1;
+        }
 
+        // glavni loop
         stranicaA -= 1;
         stranicaB -= 1;
-        while (stranicaB >= 1){
-            stKvadratov = stranicaA * stranicaB;
+        while (stranicaB > 1){
+            stKvadratov += stranicaA * stranicaB;
             stranicaA -= 1;
             stranicaB -= 1;
         }
