@@ -7,28 +7,12 @@ public class DN01_63220294{
         int stKvadratov = 0;
         int stranicaA = sc.nextInt();
         int stranicaB = sc.nextInt();
-
-        // obrne stranici, ce je stranicaA vecja od stranicaB
-        // pravokotnik je vedno vodoraven
-        // stranicaB je vodoravna stranica, vedno vecja.
-        if (stranicaA > stranicaB){
-            int temp = stranicaA;
-            stranicaA = stranicaB;
-            stranicaB = temp;
-        }
         
-        // poseben case ce sta obe stranici 2
-        if (stranicaA == 2 && stranicaB == 2){
-            stKvadratov = 1;
-        }
-
         // glavni loop
-        stranicaA -= 1;
-        stranicaB -= 1;
-        while (stranicaB > 1){
-            stKvadratov += stranicaA * stranicaB;
-            stranicaA -= 1;
-            stranicaB -= 1;
+        while (stranicaB > 1 && stranicaA > 1){
+            stKvadratov += (stranicaA - 1) * (stranicaB - 1);
+            stranicaA--;
+            stranicaB--;
         }
         System.out.println(stKvadratov);
     }
