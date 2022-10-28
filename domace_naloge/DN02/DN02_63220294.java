@@ -2,13 +2,21 @@ import java.util.Scanner;
 
 public class DN02_63220294{
     public static void main(String[] args){
+        // setup
         Scanner sc = new Scanner(System.in);
+        int rezultat = 0;
 
         // osnovni vnosi.
         int tipTipkovke = sc.nextInt();
         int d = sc.nextInt();
         int steviloVnosov = sc.nextInt();
 
+        // glavni loop (verjetno??)
+        for (int i = 0; i < steviloVnosov; i++){
+            // nekaj
+        }
+
+        System.out.println(rezultat);
     }
 
     public static int Raznovrstnica(int dolzina){
