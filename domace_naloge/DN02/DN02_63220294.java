@@ -11,15 +11,28 @@ public class DN02_63220294{
         int d = sc.nextInt();
         int steviloVnosov = sc.nextInt();
 
-        // glavni loop (verjetno??)
-        for (int i = 0; i < steviloVnosov; i++){
-            // nekaj
+        switch (tipTipkovke){
+            case 1:
+                rezultat = Raznovrstnica(d);
+                break;
+            case 2:
+                rezultat = Kvadratnica(d);
+                break;
+            case 3:
+                rezultat = Piramidnica(d);
+                break;
+            case 4:
+                rezultat = Spiralnica(d);
+                break;
         }
 
         System.out.println(rezultat);
     }
 
     public static int Raznovrstnica(int dolzina){
+        for (int i = 0; i < steviloVnosov; i++){
+            // nekaj
+        }
         return 1;
     }
 
