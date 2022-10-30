@@ -25,7 +25,7 @@ public class DN02_63220294{
                 rezultat = Piramidnica(d, steviloVnosov);
                 break;
             case 4:
-                rezultat = Spiralnica(d);
+                rezultat = Spiralnica(d, steviloVnosov);
                 break;
         }
 
@@ -83,8 +83,18 @@ public class DN02_63220294{
         return rezultat;
     }
 
-    public static int Spiralnica(int stranica){
+    public static int Spiralnica(int stranica, int stVnos){
         int rezultat = 0;
+        int vnos = 0;
+        int buffer = 0;
+
+        // glavni loop
+        buffer = sc.nextInt();
+        for (int i = 1; i < stVnos; i++){
+            vnos = sc.nextInt();
+            rezultat += AbsRazKvad(buffer, vnos, stranica);
+            buffer = vnos;
+        }
         return rezultat;
     }
     
