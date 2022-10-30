@@ -13,6 +13,7 @@ public class DN02_63220294{
         int d = sc.nextInt();
         int steviloVnosov = sc.nextInt();
 
+        // glavni switch
         switch (tipTipkovke){
             case 1:
                 rezultat = Raznovrstnica(d, steviloVnosov);
@@ -28,6 +29,7 @@ public class DN02_63220294{
                 break;
         }
 
+        // edini output
         System.out.println(rezultat);
     }
 
@@ -50,35 +52,34 @@ public class DN02_63220294{
         int rezultat = 0;
         int vnos = 0;
         int buffer = 0;
-        int bufferX = 0;
-        int bufferY = 0;
-        int vnosX = 0;
-        int vnosY = 0;
 
+        // glavni loop
         buffer = sc.nextInt();
-        bufferX = KoordX(buffer, stranica);
-        bufferY = KoordY(buffer, stranica);
-        
         for (int i = 1; i < stVnos; i++){
             vnos = sc.nextInt();
-            vnosX = KoordX(vnos, stranica);
-            vnosY = KoordY(vnos, stranica);
-            rezultat += AbsRazKo(bufferX, bufferY, vnosX, vnosY);
+            rezultat += AbsRazKvad(buffer, vnos, stranica);
             buffer = vnos;
-            bufferX = vnosX;
-            bufferY = vnosY;
         }
         return rezultat;
     }
 
     public static int Piramidnica(int visina){
         int rezultat = 0;
+        int vnos = 0;
+        int buffer = 0;
+
         return rezultat;
     }
 
     public static int Spiralnica(int stranica){
         int rezultat = 0;
         return rezultat;
+    }
+    
+    // sklepa da je kvadratni koordinatni sistem, izracuna X in Y obeh, vrne razdaljo.
+    public static int AbsRazKvad(int prvaCifra, int drugaCifra, int stranica){
+        return AbsRazKo(KoordX(prvaCifra, stranica), KoordY(prvaCifra, stranica),
+         KoordX(drugaCifra, stranica), KoordY(drugaCifra, stranica));
     }
 
     // vrne absolutno razliko koordinat (razdaljo)
