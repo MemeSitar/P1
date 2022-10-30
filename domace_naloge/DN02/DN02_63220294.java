@@ -34,13 +34,11 @@ public class DN02_63220294{
     public static int Raznovrstnica(int dolzina, int stVnos){
         int rezultat = 0;
         int vnos = 0;
-        int buffer = -1;
+        int buffer = 0;
 
         // glavni loop
+        buffer = sc.nextInt();
         for (int i = 1; i < stVnos; i++){
-            // ce se vnos izvede prvic
-            buffer = BufferCheck(buffer);
-
             vnos = sc.nextInt();
             rezultat += Absolutna(vnos, buffer);
             buffer = vnos;
@@ -51,11 +49,10 @@ public class DN02_63220294{
     public static int Kvadratnica(int stranica, int stVnos){
         int rezultat = 0;
         int vnos = 0;
-        int buffer = -1;
+        int buffer = 0;
+        buffer = sc.nextInt();
 
         for (int i = 1; i < stVnos; i++){
-            buffer = BufferCheck(buffer);
-            
             vnos = sc.nextInt();
 
             rezultat += Absolutna(vnos, buffer);
@@ -80,11 +77,4 @@ public class DN02_63220294{
         return vrednost;
     }
 
-    // funkcija preveri ce je buffer nastavljen na -1, torej ce se ni bilo nobenega vnosa.
-    public static int BufferCheck(int buffer){
-        if (buffer == -1){
-            buffer = sc.nextInt();
-        }
-        return buffer;
-    }
 }
