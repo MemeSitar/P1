@@ -13,7 +13,7 @@ public class DN02_63220294{
 
         switch (tipTipkovke){
             case 1:
-                rezultat = Raznovrstnica(d);
+                rezultat = Raznovrstnica(d, steviloVnosov);
                 break;
             case 2:
                 rezultat = Kvadratnica(d);
@@ -29,23 +29,42 @@ public class DN02_63220294{
         System.out.println(rezultat);
     }
 
-    public static int Raznovrstnica(int dolzina){
-        for (int i = 0; i < steviloVnosov; i++){
-            // nekaj
+    public static int Raznovrstnica(int dolzina, int stVnos){
+        Scanner sc = new Scanner(System.in);
+        int rezultat = 0;
+        int vnos = 0;
+        int buffer = -1;
+
+        // glavni loop
+        for (int i = 0; i < stVnos; i++){
+            // ce se vnos izvede prvic
+            if (buffer == -1){
+                buffer = sc.nextInt();
+            }
+
+            vnos = sc.nextInt();
+            rezultat += Absolutna(vnos, buffer);
+            buffer = vnos;
         }
-        return 1;
+        return rezultat;
     }
 
     public static int Kvadratnica(int stranica){
-        return 2;
+        Scanner sc = new Scanner(System.in);
+        int rezultat = 0;
+        return rezultat;
     }
 
     public static int Piramidnica(int visina){
-        return 3;
+        Scanner sc = new Scanner(System.in);
+        int rezultat = 0;
+        return rezultat;
     }
 
     public static int Spiralnica(int stranica){
-        return 4;
+        Scanner sc = new Scanner(System.in);
+        int rezultat = 0;
+        return rezultat;
     }
 
     // sprejme dva inta, vrne absolutno vrednost. samoumevno.
