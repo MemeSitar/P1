@@ -22,7 +22,7 @@ public class DN02_63220294{
                 rezultat = Kvadratnica(d, steviloVnosov);
                 break;
             case 3:
-                rezultat = Piramidnica(d);
+                rezultat = Piramidnica(d, steviloVnosov);
                 break;
             case 4:
                 rezultat = Spiralnica(d);
@@ -63,11 +63,23 @@ public class DN02_63220294{
         return rezultat;
     }
 
-    public static int Piramidnica(int visina){
+    public static int Piramidnica(int visina, int stVnos){
         int rezultat = 0;
         int vnos = 0;
         int buffer = 0;
 
+        buffer = sc.nextInt();
+        int by = KoY2(buffer);
+        int bx = KoX2(by, visina, buffer);
+        for (int i = 1; i < stVnos; i++){
+            vnos = sc.nextInt();
+            int vy = KoY2(vnos);
+            int vx = KoX2(vy, visina, vnos);
+            rezultat += AbsRazKo(bx, by, vx, vy);
+            buffer = vnos;
+            by = vy;
+            bx = vx;
+        }
         return rezultat;
     }
 
@@ -105,5 +117,15 @@ public class DN02_63220294{
     // -||- za Y
     public static int KoordY(int stevilka, int d){
         return stevilka / d;
+    }
+
+    public static int KoX2(int koordY, int d, int stevilka){
+        int offset = stevilka - (koordY * koordY);
+        int rezultat = d - 1 - koordY + offset;
+        return rezultat;
+    }
+
+    public static int KoY2(int stevilka){
+        return (int) Math.sqrt(stevilka);
     }
 }
