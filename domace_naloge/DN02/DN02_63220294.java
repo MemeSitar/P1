@@ -50,13 +50,23 @@ public class DN02_63220294{
         int rezultat = 0;
         int vnos = 0;
         int buffer = 0;
+        int bufferX = 0;
+        int bufferY = 0;
+        int vnosX = 0;
+        int vnosY = 0;
 
         buffer = sc.nextInt();
+        bufferX = KoordX(buffer, stranica);
+        bufferY = KoordY(buffer, stranica);
         
         for (int i = 1; i < stVnos; i++){
             vnos = sc.nextInt();
-
-            rezultat += Absolutna(vnos, buffer);
+            vnosX = KoordX(vnos, stranica);
+            vnosY = KoordY(vnos, stranica);
+            rezultat += AbsRazKo(bufferX, bufferY, vnosX, vnosY);
+            buffer = vnos;
+            bufferX = vnosX;
+            bufferY = vnosY;
         }
         return rezultat;
     }
