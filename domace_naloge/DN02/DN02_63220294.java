@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class DN02_63220294{
     // scanner prestavljen ven da je dostopen vsem metodam.
     static Scanner sc = new Scanner(System.in);
-    
+
     public static void main(String[] args){
         // setup
         int rezultat = 0;
@@ -18,7 +18,7 @@ public class DN02_63220294{
                 rezultat = Raznovrstnica(d, steviloVnosov);
                 break;
             case 2:
-                rezultat = Kvadratnica(d);
+                rezultat = Kvadratnica(d, steviloVnosov);
                 break;
             case 3:
                 rezultat = Piramidnica(d);
@@ -39,9 +39,7 @@ public class DN02_63220294{
         // glavni loop
         for (int i = 1; i < stVnos; i++){
             // ce se vnos izvede prvic
-            if (buffer == -1){
-                buffer = sc.nextInt();
-            }
+            buffer = BufferCheck(buffer);
 
             vnos = sc.nextInt();
             rezultat += Absolutna(vnos, buffer);
@@ -50,8 +48,18 @@ public class DN02_63220294{
         return rezultat;
     }
 
-    public static int Kvadratnica(int stranica){
+    public static int Kvadratnica(int stranica, int stVnos){
         int rezultat = 0;
+        int vnos = 0;
+        int buffer = -1;
+
+        for (int i = 1; i < stVnos; i++){
+            buffer = BufferCheck(buffer);
+            
+            vnos = sc.nextInt();
+
+            rezultat += Absolutna(vnos, buffer);
+        }
         return rezultat;
     }
 
@@ -70,5 +78,13 @@ public class DN02_63220294{
         int tmp = a - b;
         int vrednost = tmp >= 0 ? tmp : -tmp;
         return vrednost;
+    }
+
+    // funkcija preveri ce je buffer nastavljen na -1, torej ce se ni bilo nobenega vnosa.
+    public static int BufferCheck(int buffer){
+        if (buffer == -1){
+            buffer = sc.nextInt();
+        }
+        return buffer;
     }
 }
