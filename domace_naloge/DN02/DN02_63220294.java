@@ -132,8 +132,8 @@ public class DN02_63220294{
     // X koordinata za piramido 
     // d - 1 - i + offset (razdalja od zacetka vrstice do stevilke)
     public static int KoX2(int koordY, int d, int stevilka){
-        int offset = stevilka - (koordY * koordY);
-        int rezultat = d - 1 - koordY + offset;
+        int offset = stevilka - (koordY * koordY); // oddaljenost stevilke od prve v vrsti
+        int rezultat = d - 1 - koordY + offset; // oddaljenost od (0, i) (prazen prostor)
         return rezultat;
     }
 
