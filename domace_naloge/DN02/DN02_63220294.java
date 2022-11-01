@@ -92,7 +92,8 @@ public class DN02_63220294{
         buffer = sc.nextInt();
         for (int i = 1; i < stVnos; i++){
             vnos = sc.nextInt();
-            rezultat += AbsRazKvad(buffer, vnos, stranica);
+            rezultat += AbsRazKo(SpirKoord(buffer, "x"), SpirKoord(buffer, "y"),
+             SpirKoord(vnos, "x"), SpirKoord(vnos, "y"));
             buffer = vnos;
         }
         return rezultat;
@@ -140,5 +141,65 @@ public class DN02_63220294{
     // Y koordinate za piramido
     public static int KoY2(int stevilka){
         return (int) Math.sqrt(stevilka);
+    }
+    
+    // funkcija vzame notri stevilko iz spiralnice
+    // preko tega, v katerem krogu je stevilka izracuna njegovo x ali y koordinato.
+    // drugo koordinato dobi iz oddaljenosti od prvega kvadrata v krogu.
+    // XaliY je string, ki poskrbi da funkcija pri inputu "x" flikne ven x, sicer pa y 
+    public static int SpirKoord(int stevilka, String XaliY){
+        int koren = (int) Math.sqrt(stevilka);
+        int manjsiKvadrat = koren * koren;
+        int prviKvadratKroga = 0;
+        int x = 0;
+        int y = 0;
+        int stKroga = 0;
+        int stranicaKroga = 0;
+        int razdOdZacKroga = 0;
+
+        // poiscemo prvi kvadrat v krogu (torej kvadrati lihih stevil -- 1, 9, 25, 49 ...)
+        // koren potem spremenimo v koren sodega kvadrata, da dobimo pravilno stevilko za kroge.
+        if (koren % 2 == 1){
+            prviKvadratKroga = koren * koren;
+            koren += 1;
+            stKroga = (koren + 1) / 2;
+        } else {
+            prviKvadratKroga = (koren - 1) * (koren - 1);
+            stKroga = koren / 2;
+        }
+
+        razdOdZacKroga = stevilka - prviKvadratKroga;
+        stranicaKroga = 2 * stKroga;
+
+        // kolikokrat razdalja od zacetka kroga (torej 1, 9, 25 ...) preseze stranico kroga
+        // stranica kroga je dva krat stevilka kroga
+        if (razdOdZacKroga <= stranicaKroga){
+            y = stKroga;
+            x = -stKroga + razdOdZacKroga;
+        } else if (razdOdZacKroga <= 2 * stranicaKroga){
+            x = stKroga;
+            y = stKroga - (razdOdZacKroga - stranicaKroga);
+        } else if (razdOdZacKroga <= 3 * stranicaKroga){
+            y = -stKroga;
+            x = stKroga - (razdOdZacKroga - 2 * stranicaKroga);
+        } else if (razdOdZacKroga <= 4 * stranicaKroga){
+            x = -stKroga;
+            y = -stKroga + (razdOdZacKroga - 3 * stranicaKroga);
+        }
+        // uporabljeno za debuggiranje
+        //System.out.printf("%d, krog: %d, koordinate: (%d, %d)\n", stevilka, stKroga, x, y);
+
+        // rec ne dela za stevilka = 0, bog ve zakaj.
+        if (stevilka == 0){
+            x = 0;
+            y = 0;
+        }
+
+        // odloci ali je output x ali y
+        if (XaliY == "x"){
+            return x;
+        } else {
+            return y;
+        }
     }
 }
