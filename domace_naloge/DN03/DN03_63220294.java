@@ -22,15 +22,27 @@ public class DN03_63220294{
         System.out.println(rezultat);
     }
 
-    public static int PrviPrimer(int visina, int sirina, int potenca){
+    public static long PrviPrimer(int visina, int sirina, int potenca){
         return (visina / potenca) * (sirina / potenca);
     }
 
-    public static int DrugiPrimer(int visina, int sirina, int potenca){
-        return 2;
+    public static long DrugiPrimer(int visina, int sirina, int potenca){
+        long rezultat = 0;
+        // ce smo prisli do pravokotnika, ki ima obe stranici deljivi s potenco, lahko koncamo.
+        if (visina % potenca == 0 && sirina % potenca == 0){
+            return PrviPrimer(visina, sirina, potenca);
+        }
+        // sicer izracunamo del pravokotnika, ki je deljiv.
+        int stPloscicVisina = visina / potenca;
+        int stVelikihPloscicSirina = sirina / potenca;
+        rezultat += stPloscicVisina * stVelikihPloscicSirina;
+        // izracunamo ostanek in potenco delimo z 2 (zmanjsamo eksponent za 1) in ponovimo vajo.
+        int ostanekSirina = sirina % potenca;
+        int novaPotenca = potenca / 2;
+        return rezultat + DrugiPrimer(visina, ostanekSirina, novaPotenca);
     }
 
-    public static int TretjiPrimer(int visina, int sirina, int potenca){
+    public static long TretjiPrimer(int visina, int sirina, int potenca){
         return 3;
     }
 }
