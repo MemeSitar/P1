@@ -43,6 +43,29 @@ public class DN03_63220294{
     }
 
     public static long TretjiPrimer(int visina, int sirina, int potenca){
-        return 3;
+        long rezultat = 0;
+        // najprej preverimo ce ze velja drugi primer.
+        if (visina % potenca == 0 && sirina % potenca != 0){
+            return DrugiPrimer(visina, sirina, potenca);
+        } else if (sirina % potenca == 0 && visina % potenca != 0){ // ali obrnjenemu drugemu
+            return DrugiPrimer(sirina, visina, potenca);
+        }
+
+        // izracunamo tisto kar lahko takoj.
+        int stVelikihPloscicVisina = visina / potenca;
+        int stVelikihPloscicSirina = sirina / potenca;
+        rezultat += stVelikihPloscicVisina * stVelikihPloscicSirina;
+        // poiscemo ostanek
+        int ostanekVisina = visina % potenca;
+        int ostanekSirina = sirina % potenca;
+        // dobimo tri pravokotnike ki ostanejo:
+        //    a          b
+        // ostanekV * ostanekS, <- pusti kot tretji primer, ponovi z manjso potenco.
+        // ostanekV * (sirina - ostanekS) <- ponovi z isto potenco.
+        // ostanekS * (visina - ostanekV) <- ponovi z isto potenco.
+        long desniPravokotnik = TretjiPrimer(visina - ostanekVisina, ostanekSirina, potenca);
+        long spodnjiPravokotnik = TretjiPrimer(ostanekVisina, sirina - ostanekSirina, potenca);
+        long kotniPravokotnik = TretjiPrimer(ostanekVisina, ostanekSirina, potenca);
+        return rezultat + desniPravokotnik + spodnjiPravokotnik + kotniPravokotnik;
     }
 }
