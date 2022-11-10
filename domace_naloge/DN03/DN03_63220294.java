@@ -20,6 +20,8 @@ public class DN03_63220294{
             rezultat = PrviPrimer(visina, sirina, potenca);
         } else if (visina % potenca == 0 && sirina % potenca != 0){
             rezultat = DrugiPrimer(visina, sirina, potenca);
+        } else if (sirina % potenca == 0 && visina % potenca != 0){ // obrnjen drugi
+            rezultat = DrugiPrimer(sirina, visina, potenca);
         } else if (visina % potenca != 0 && sirina % potenca != 0){
             rezultat = TretjiPrimer(visina, sirina, potenca);
         }
