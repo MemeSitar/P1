@@ -11,6 +11,11 @@ public class DN03_63220294{
 
         int potenca = (int) Math.pow((double) 2, (double) eksponent);
 
+        // v primeru da je potenca VELIKO prevelika.
+        while (potenca > visina || potenca > sirina){
+            potenca = potenca / 2;
+        }
+
         if (visina % potenca == 0 && sirina % potenca == 0){
             rezultat = PrviPrimer(visina, sirina, potenca);
         } else if (visina % potenca == 0 && sirina % potenca != 0){
@@ -44,6 +49,11 @@ public class DN03_63220294{
 
     public static long TretjiPrimer(int visina, int sirina, int potenca){
         long rezultat = 0;
+        // se par exit caseov
+        // izogni se delitvi z 0
+        if (visina == 1 || sirina == 1 || potenca == 1){
+            return visina * sirina;
+        }
         // najprej preverimo ce ze velja drugi primer.
         if (visina % potenca == 0 && sirina % potenca != 0){
             return DrugiPrimer(visina, sirina, potenca);
@@ -63,9 +73,10 @@ public class DN03_63220294{
         // ostanekV * ostanekS, <- pusti kot tretji primer, ponovi z manjso potenco.
         // ostanekV * (sirina - ostanekS) <- ponovi z isto potenco.
         // ostanekS * (visina - ostanekV) <- ponovi z isto potenco.
-        long desniPravokotnik = TretjiPrimer(visina - ostanekVisina, ostanekSirina, potenca);
-        long spodnjiPravokotnik = TretjiPrimer(ostanekVisina, sirina - ostanekSirina, potenca);
-        long kotniPravokotnik = TretjiPrimer(ostanekVisina, ostanekSirina, potenca);
+        int novaPotenca = potenca / 2;
+        long desniPravokotnik = TretjiPrimer(visina - ostanekVisina, ostanekSirina, novaPotenca);
+        long spodnjiPravokotnik = TretjiPrimer(ostanekVisina, sirina - ostanekSirina, novaPotenca);
+        long kotniPravokotnik = TretjiPrimer(ostanekVisina, ostanekSirina, novaPotenca);
         return rezultat + desniPravokotnik + spodnjiPravokotnik + kotniPravokotnik;
     }
 }
