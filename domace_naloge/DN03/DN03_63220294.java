@@ -5,11 +5,11 @@ public class DN03_63220294{
         Scanner sc = new Scanner(System.in);
         long rezultat = 0;
 
-        int visina = sc.nextInt();
-        int sirina = sc.nextInt();
-        int eksponent = sc.nextInt();
+        long visina = sc.nextInt();
+        long sirina = sc.nextInt();
+        long eksponent = sc.nextInt();
 
-        int potenca = (int) Math.pow((double) 2, (double) eksponent);
+        long potenca = (long) Math.pow((double) 2, (double) eksponent);
 
         // v primeru da je potenca VELIKO prevelika.
         while (potenca > visina || potenca > sirina){
@@ -29,27 +29,27 @@ public class DN03_63220294{
         System.out.println(rezultat);
     }
 
-    public static long PrviPrimer(int visina, int sirina, int potenca){
-        return (visina / potenca) * (sirina / potenca);
+    public static long PrviPrimer(long visina, long sirina, long potenca){
+        return (long) ((visina / potenca) * (sirina / potenca));
     }
 
-    public static long DrugiPrimer(int visina, int sirina, int potenca){
+    public static long DrugiPrimer(long visina, long sirina, long potenca){
         long rezultat = 0;
         // ce smo prisli do pravokotnika, ki ima obe stranici deljivi s potenco, lahko koncamo.
         if (visina % potenca == 0 && sirina % potenca == 0){
             return PrviPrimer(visina, sirina, potenca);
         }
         // sicer izracunamo del pravokotnika, ki je deljiv.
-        int stPloscicVisina = visina / potenca;
-        int stVelikihPloscicSirina = sirina / potenca;
+        long stPloscicVisina = visina / potenca;
+        long stVelikihPloscicSirina = sirina / potenca;
         rezultat += stPloscicVisina * stVelikihPloscicSirina;
         // izracunamo ostanek in potenco delimo z 2 (zmanjsamo eksponent za 1) in ponovimo vajo.
-        int ostanekSirina = sirina % potenca;
-        int novaPotenca = potenca / 2;
-        return rezultat + DrugiPrimer(visina, ostanekSirina, novaPotenca);
+        long ostanekSirina = sirina % potenca;
+        long novaPotenca = potenca / 2;
+        return (long) (rezultat + DrugiPrimer(visina, ostanekSirina, novaPotenca));
     }
 
-    public static long TretjiPrimer(int visina, int sirina, int potenca){
+    public static long TretjiPrimer(long visina, long sirina, long potenca){
         long rezultat = 0;
         // se par exit caseov
         // izogni se delitvi z 0
@@ -64,21 +64,21 @@ public class DN03_63220294{
         }
 
         // izracunamo tisto kar lahko takoj.
-        int stVelikihPloscicVisina = visina / potenca;
-        int stVelikihPloscicSirina = sirina / potenca;
+        long stVelikihPloscicVisina = visina / potenca;
+        long stVelikihPloscicSirina = sirina / potenca;
         rezultat += stVelikihPloscicVisina * stVelikihPloscicSirina;
         // poiscemo ostanek
-        int ostanekVisina = visina % potenca;
-        int ostanekSirina = sirina % potenca;
+        long ostanekVisina = visina % potenca;
+        long ostanekSirina = sirina % potenca;
         // dobimo tri pravokotnike ki ostanejo:
         //    a          b
         // ostanekV * ostanekS, <- pusti kot tretji primer, ponovi z manjso potenco.
         // ostanekV * (sirina - ostanekS) <- ponovi z isto potenco.
         // ostanekS * (visina - ostanekV) <- ponovi z isto potenco.
-        int novaPotenca = potenca / 2;
+        long novaPotenca = potenca / 2;
         long desniPravokotnik = TretjiPrimer(visina - ostanekVisina, ostanekSirina, novaPotenca);
         long spodnjiPravokotnik = TretjiPrimer(ostanekVisina, sirina - ostanekSirina, novaPotenca);
         long kotniPravokotnik = TretjiPrimer(ostanekVisina, ostanekSirina, novaPotenca);
-        return rezultat + desniPravokotnik + spodnjiPravokotnik + kotniPravokotnik;
+        return (long) (rezultat + desniPravokotnik + spodnjiPravokotnik + kotniPravokotnik);
     }
 }
