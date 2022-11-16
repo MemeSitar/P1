@@ -42,7 +42,20 @@ public class Volitve {
     }
 
     public static int vsotaUvrstitev(int[][][] t, int stranka, int volisce) {
-        // popravite / dopolnite
-        return -1;
+        int vsota = 0;
+        for (int leto = 0; leto < t.length; leto++){
+            vsota += uvrstitev(t, leto, stranka, volisce);
+        }
+        return vsota;
+    }
+
+    public static int uvrstitev(int[][][] t, int leto, int stranka, int volisce){
+        int uvrstitev = 1; 
+        for (int stranke = 0; stranke < t[leto].length; stranke++){
+            if (t[leto][stranke][volisce] > t[leto][stranka][volisce]){
+                uvrstitev++;
+            }
+        }
+        return uvrstitev;
     }
 }
