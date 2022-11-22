@@ -10,21 +10,24 @@ public class DN04_63220294{
         int srecnoStevilo = sc.nextInt();
 
         // ustvari tabelco
-        int[] stevilke = new int[povabljeni];
+        int[] stevilke = new int[1001];
         for (int i = 0; i < povabljeni; i++){
-            stevilke[i] = sc.nextInt();
+            stevilke[sc.nextInt()]++;
+        }
+        int meja = 1;
+        if (srecnoStevilo > 1000){
+            meja = srecnoStevilo - 1000;
         }
         
         // algoritem tukaj
-        for (int i = 0; i < povabljeni; i++){
-            if (2 * stevilke[i] == srecnoStevilo){
-                rezultat++;
+        for (int i = meja; i < srecnoStevilo/2+1; i++){
+            int pristevek = 0;
+            if (i == srecnoStevilo-i){
+                pristevek = stevilke[i]*stevilke[i];
+            } else {
+                pristevek = stevilke[i]*stevilke[srecnoStevilo-i]*2;
             }
-            for (int j = i + 1; j < povabljeni; j++){
-                if (stevilke[i] + stevilke[j] == srecnoStevilo){
-                    rezultat += 2;
-                }
-            }
+            rezultat += pristevek;
         }
         // rezultat
         System.out.println(rezultat);
