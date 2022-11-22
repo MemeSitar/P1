@@ -17,14 +17,12 @@ public class DN04_63220294{
         
         // algoritem tukaj
         for (int i = 0; i < povabljeni; i++){
-            if (stevilke[i] > srecnoStevilo){
-                continue;
+            if (2 * stevilke[i] == srecnoStevilo){
+                rezultat++;
             }
-            for (int j = 0; j < povabljeni; j++){
-                if (stevilke[j] > srecnoStevilo){
-                    continue;
-                } else if (stevilke[i] + stevilke[j] == srecnoStevilo){
-                    rezultat++;
+            for (int j = i + 1; j < povabljeni; j++){
+                if (stevilke[i] + stevilke[j] == srecnoStevilo){
+                    rezultat += 2;
                 }
             }
         }
