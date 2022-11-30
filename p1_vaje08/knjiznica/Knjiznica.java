@@ -2,11 +2,13 @@ public class Knjiznica{
     private int[][] clani;
     private int[] knjige;
     private int stIzvodovNaNaslov;
+    private int[] stIzposoj;
 
     public Knjiznica(int stClanov, int stNaslovov, int stIzvodovNaNaslov){
         this.stIzvodovNaNaslov = stIzvodovNaNaslov;
         this.clani = new int[stClanov][stNaslovov];
         this.knjige = new int[stNaslovov];
+        this.stIzposoj = new int[stNaslovov];
         for (int i = 0; i < stNaslovov; i++){
             knjige[i] = stIzvodovNaNaslov;
         }
@@ -16,6 +18,7 @@ public class Knjiznica{
         if (this.clani[clan][naslov] == 0 && this.knjige[naslov] > 0){
             this.clani[clan][naslov] += 1;
             this.knjige[naslov] -= 1;
+            this.stIzposoj[naslov] += 1;
             return true;
         } else {
             return false;
@@ -47,8 +50,14 @@ public class Knjiznica{
     }
 
     public int najNaslov(){
-        int najmanj = this.stIzvodovNaNaslov;
+        int najvec = 0;
         int najNaslov = 0;
+        for (int i = 0; i < this.stIzposoj.length; i++){
+            if (this.stIzposoj[i] > najvec){
+                najNaslov = i;
+                najvec = this.stIzposoj[i];
+            }
+        }
         return najNaslov;
     }
 
