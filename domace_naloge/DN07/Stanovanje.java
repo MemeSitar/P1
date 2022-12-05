@@ -79,58 +79,7 @@ public class Stanovanje {
     }
 
     public Oseba[] sosedjeSosedov() {
-        int velikostTabele = this.steviloSosedovSosedov();
-        Oseba[] sosedjeSosedov = new Oseba[velikostTabele];
-        int j = 0;
-        for (int i = 0; i < 4; i++){
-            if (this.stanovanja[i] == null){
-                continue;
-            }
-            //this.stanovanja[i].sosednjeOsebe[]
-        }
+        // jutri se ukvarjaj s tem.
         return null;
-    }
-
-    public Oseba[] sosednjeOsebe(int zacetniIndeks){
-        // ta funkcija preveri samo zacetni indeks, in naslednji indeks.
-        int j = 0;
-        int velikostTabele = this.steviloSosedovOseb(zacetniIndeks);
-        Oseba[] sosedje = new Oseba[velikostTabele];
-        int temp = 0;
-        for (int i = zacetniIndeks; i < zacetniIndeks + 2; i++){
-            temp = i % 4;
-            if (stanovanja[i] == null) {
-                continue;
-            }
-            for (int k = 0; k < stanovanja[i].steviloStanovalcev(); k++){
-                sosedje[j] = stanovanja[i].stanovalci[k];
-                j++;
-            }
-        }
-        return sosedje;
-    }
-
-    public int steviloSosedovOseb(int zacetniIndeks){
-        // ta funkcija vrne velikost tabele za sosednjeOsebe.
-        int stOseb = 0;
-        int temp = 0;
-        for (int i = zacetniIndeks; i < zacetniIndeks + 2; i++){
-            temp = i % 4;
-            if (this.stanovanja[temp] != null){
-                stOseb += this.steviloStanovalcev();
-            }
-        }
-        return stOseb;
-    }
-
-    public int steviloSosedovSosedov(){
-        int stOseb = 0;
-        for (int i = 0; i < 4; i++){
-            if (this.stanovanja[i] == null){
-                continue;
-            }
-            stOseb += this.stanovanja[i].steviloSosedovOseb(i);
-        }
-        return stOseb;
     }
 }
