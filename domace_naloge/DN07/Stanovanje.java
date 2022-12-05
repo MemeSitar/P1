@@ -65,8 +65,7 @@ public class Stanovanje {
     public Oseba starostaSosescine() {
         Oseba najstarejsaOs = this.starosta();
         int najStarost = 0;
-        Oseba[] najstarejsi = new Oseba[5];
-        najstarejsi[0] = this.starosta();
+        Oseba[] najstarejsi = new Oseba[4];
         if (this.levi != null){
             najstarejsi[1] = this.levi.starosta();
         }
@@ -77,7 +76,7 @@ public class Stanovanje {
             najstarejsi[3] = this.levi.starosta();
         }
         if (this.zgornji != null){
-            najstarejsi[4] = this.levi.starosta();
+            najstarejsi[0] = this.levi.starosta();
         }
         for (int i = 0; i < 5; i++){
             if (najstarejsi[i] != null && najstarejsi[i].vrniStarost() > najStarost){
@@ -89,7 +88,7 @@ public class Stanovanje {
     }
 
     public Oseba[] sosedjeSosedov() {
-        // dopolnite/popravite ...
+        
         return null;
     }
 }
