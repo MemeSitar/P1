@@ -12,8 +12,14 @@ public class Stanovanje {
     }
 
     public int steviloStarejsihOd(Oseba os) {
-        
-        return 0;
+        int stevec = 0;
+        int starostOs = os.vrniStarost();
+        for (int i = 0; i < this.steviloStanovalcev(); i++){
+            if (this.stanovalci[i].vrniStarost() > starostOs){
+                stevec++;
+            }
+        }
+        return stevec;
     }
 
     public int[] mz() {
