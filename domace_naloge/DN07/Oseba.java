@@ -1,17 +1,29 @@
 
 public class Oseba {
+    private String ip;
+    private char spol;
+    private int starost;
 
     public Oseba(String ip, char spol, int starost) {
-        // dopolnite ...
+        this.ip = ip;
+        this.spol = spol;
+        this.starost = starost;
     }
 
     public String toString() {
-        // dopolnite/popravite ...
-        return null;
+        String sporocilo = String.format("%s, %c, %d", ip, spol, starost);
+        return sporocilo;
     }
 
     public boolean jeStarejsaOd(Oseba os) {
-        // dopolnite/popravite ...
-        return false;
+        if (this.starost > os.vrniStarost()){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public int vrniStarost() {
+        return this.starost;
     }
 }

@@ -1,17 +1,18 @@
 
 public class Stanovanje {
+    private Oseba[] stanovalci;
 
     public Stanovanje(Oseba[] stanovalci) {
-        // dopolnite ...
+        this.stanovalci = stanovalci;
     }
 
     public int steviloStanovalcev() {
-        // dopolnite/popravite ...
-        return 0;
+        int stevilo = this.stanovalci.length;
+        return stevilo;
     }
 
     public int steviloStarejsihOd(Oseba os) {
-        // dopolnite/popravite ...
+        
         return 0;
     }
 
