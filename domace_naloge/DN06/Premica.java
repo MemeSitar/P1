@@ -1,67 +1,82 @@
 
 public class Premica {
+    private double k;
+    private double n;
 
     public Premica(double k, double n) {
-        // dopolnite ...
+        this.k = k;
+        this.n = n;
     }
 
     public double vrniK() {
-        // dopolnite/popravite ...
-        return 0.0;
+        return this.k;
     }
 
     public double vrniN() {
-        // dopolnite/popravite ...
-        return 0.0;
+        return this.n;
     }
 
     public String toString() {
-        // dopolnite/popravite ...
-        return null;
+        String string = String.format(java.util.Locale.US, "y = %.2f x + %.2f", this.k, this.n);
+        return string;
     }
 
     public Tocka tockaPriX(double x) {
-        // dopolnite/popravite ...
-        return null;
+        double y = this.k * x + this.n;
+        Tocka tocka = new Tocka(x, y);
+        return tocka;
     }
 
     public static Premica skoziTocko(double k, Tocka t) {
-        // dopolnite/popravite ...
-        return null;
+        double n = t.vrniY() - t.vrniX() * k;
+        Premica premica = new Premica(k, n);
+        return premica;
     }
 
     public Premica vzporednica(Tocka t) {
-        // dopolnite/popravite ...
-        return null;
+        Premica vzporednica = Premica.skoziTocko(this.k, t);
+        return vzporednica;
     }
 
     public Premica pravokotnica(Tocka t) {
-        // dopolnite/popravite ...
-        return null;
+        double noviK = -1 / this.k;
+        Premica pravokotnica = Premica.skoziTocko(noviK, t);
+        return pravokotnica;
     }
 
     public Tocka presecisce(Premica p, double epsilon) {
-        // dopolnite/popravite ...
-        return null;
+        if (Math.abs(this.k - p.k) < epsilon){
+            return null;
+        } else {
+            double noviX = (p.n - this.n)/(this.k - p.k);
+            Tocka tocka = tockaPriX(noviX);
+            return tocka;
+        }
     }
 
     public Tocka projekcija(Tocka t) {
-        // dopolnite/popravite ...
-        return null;
+        Premica vzporednica = vzporednica(t);
+        Premica pravokotnica = vzporednica.pravokotnica(t);
+        Tocka presecisce = this.presecisce(pravokotnica, 0);
+        return presecisce;
     }
 
     public double razdalja(Tocka t) {
-        // dopolnite/popravite ...
-        return 0.0;
+        double razdalja = t.razdalja(this.projekcija(t));
+        return razdalja;
     }
 
     public double razdaljaOdIzhodisca() {
-        // dopolnite/popravite ...
-        return 0.0;
+        Tocka t = Tocka.izhodisce();
+        double razdalja = this.razdalja(t);
+        return razdalja;
     }
 
     public double razdalja(double n) {
-        // dopolnite/popravite ...
-        return 0.0;
+        Premica pravokotnica = this.pravokotnica(Tocka.izhodisce());
+        Premica premica2 = new Premica(this.k, n);
+        Tocka presecisce = this.presecisce(pravokotnica, 0);
+        double skupnaRazdalja = premica2.razdalja(presecisce);
+        return skupnaRazdalja;
     }
 }
