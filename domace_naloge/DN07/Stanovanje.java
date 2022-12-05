@@ -35,8 +35,19 @@ public class Stanovanje {
     }
 
     public Oseba starosta() {
-        // dopolnite/popravite ...
-        return null;
+        int maxStarost = 0;
+        int najstarejsaOs = 0;
+        if (this.steviloStanovalcev() == 0){
+            return null;
+        } else {
+            for (int i = 0; i < this.steviloStanovalcev(); i++){
+                if (this.stanovalci[i].vrniStarost() > maxStarost){
+                    maxStarost = this.stanovalci[i].vrniStarost();
+                    najstarejsaOs = i;
+                }
+            }
+            return this.stanovalci[najstarejsaOs];
+        }
     }
 
     public void nastaviSosede(Stanovanje levi, Stanovanje zgornji,
