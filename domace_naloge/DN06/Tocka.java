@@ -1,39 +1,42 @@
 
 public class Tocka {
+    private double xKoordinata;
+    private double yKoordinata;
 
     public Tocka(double x, double y) {
-        // dopolnite ...
+        this.xKoordinata = x;
+        this.yKoordinata = y;
     }
 
     public double vrniX() {
-        // dopolnite/popravite ...
-        return 0.0;
+        return this.xKoordinata;
     }
 
     public double vrniY() {
-        // dopolnite/popravite ...
-        return 0.0;
+        return this.yKoordinata;
     }
 
     public String toString() {
-        // dopolnite/popravite ...
-        return null;
+        return String.format(java.util.Locale.US, "(%.2f, %.2f)", this.xKoordinata, this.yKoordinata);
     }
 
     // ustrezno dopolnite/popravite ...
     public static Tocka izhodisce() {
-        // dopolnite/popravite ...
-        return null;
+        Tocka tocka = new Tocka(0,0);
+        return tocka;
     }
 
     // ustrezno dopolnite/popravite ...
     public double razdalja(Tocka t) {
-        // dopolnite/popravite ...
-        return 0.0;
+        double xRazdalja = (t.xKoordinata - this.xKoordinata);
+        double yRazdalja = t.yKoordinata - this.yKoordinata;
+        double razdalja = Math.sqrt(Math.pow(xRazdalja, 2) + Math.pow(yRazdalja, 2));
+        return razdalja;
     }
 
     // ustrezno dopolnite/popravite ...
     public double razdaljaOdIzhodisca() {
-        return 0.0;
+        double razdalja = Math.sqrt(Math.pow(this.xKoordinata, 2) + Math.pow(this.yKoordinata, 2));
+        return razdalja;
     }
 }
