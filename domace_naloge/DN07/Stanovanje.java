@@ -1,12 +1,10 @@
 
 public class Stanovanje {
     private Oseba[] stanovalci;
-    private Stanovanje levi;
-    private Stanovanje zgornji;
-    private Stanovanje desni;
-    private Stanovanje spodnji;
+    private Stanovanje[] stanovanja;
 
     public Stanovanje(Oseba[] stanovalci) {
+        this.stanovanja = new Stanovanje[4];
         this.stanovalci = stanovalci;
     }
 
@@ -56,16 +54,22 @@ public class Stanovanje {
 
     public void nastaviSosede(Stanovanje levi, Stanovanje zgornji,
             Stanovanje desni, Stanovanje spodnji) {
-        this.levi = levi;
-        this.zgornji = zgornji;
-        this.desni = desni;
-        this.spodnji = spodnji;
+        this.stanovanja[0] = levi;
+        this.stanovanja[1] = zgornji;
+        this.stanovanja[2] = desni;
+        this.stanovanja[3] = spodnji;
     }
 
     public Oseba starostaSosescine() {
         Oseba najstarejsaOs = this.starosta();
         int najStarost = 0;
         Oseba[] najstarejsi = new Oseba[4];
+        for (int i = 0; i < 4; i++){
+            if (this.stanovanja[i] != null){
+                najstarejsi[i] = this.stanovanja[i].starosta();
+            }
+        }
+        /*
         if (this.levi != null){
             najstarejsi[1] = this.levi.starosta();
         }
@@ -77,8 +81,8 @@ public class Stanovanje {
         }
         if (this.zgornji != null){
             najstarejsi[0] = this.levi.starosta();
-        }
-        for (int i = 0; i < 5; i++){
+        }*/
+        for (int i = 0; i < 4; i++){
             if (najstarejsi[i] != null && najstarejsi[i].vrniStarost() > najStarost){
                 najstarejsaOs = najstarejsi[i];
                 najStarost = najstarejsaOs.vrniStarost();
