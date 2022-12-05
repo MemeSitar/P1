@@ -26,4 +26,12 @@ public class Oseba {
     public int vrniStarost() {
         return this.starost;
     }
+
+    public boolean vrniSpol() {
+        if (this.spol == 'M'){
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

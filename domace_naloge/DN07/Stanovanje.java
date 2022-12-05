@@ -23,8 +23,15 @@ public class Stanovanje {
     }
 
     public int[] mz() {
-        // dopolnite/popravite ...
-        return null;
+        int[] mz = new int[2];
+        for (int i = 0; i < this.steviloStanovalcev(); i++){
+            if (this.stanovalci[i].vrniSpol()) {
+                mz[0] += 1;
+            } else {
+                mz[1] += 1;
+            }
+        }
+        return mz;
     }
 
     public Oseba starosta() {
