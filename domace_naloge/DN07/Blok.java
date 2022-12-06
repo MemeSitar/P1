@@ -1,8 +1,9 @@
 
 public class Blok {
+    private Stanovanje stanovanje;
 
     public Blok(Stanovanje stanovanje) {
-        // dopolnite ...
+        this.stanovanje = stanovanje;
     }
 
     public Oseba starosta() {
