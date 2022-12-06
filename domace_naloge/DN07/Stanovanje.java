@@ -1,10 +1,11 @@
+import java.util.Arrays;
 
 public class Stanovanje {
     private Oseba[] stanovalci;
-    private Stanovanje[] stanovanja;
+    private Stanovanje[] sosedi;
 
     public Stanovanje(Oseba[] stanovalci) {
-        this.stanovanja = new Stanovanje[4];
+        this.sosedi = new Stanovanje[4];
         this.stanovalci = stanovalci;
     }
 
@@ -54,10 +55,10 @@ public class Stanovanje {
 
     public void nastaviSosede(Stanovanje levi, Stanovanje zgornji,
             Stanovanje desni, Stanovanje spodnji) {
-        this.stanovanja[0] = levi;
-        this.stanovanja[1] = zgornji;
-        this.stanovanja[2] = desni;
-        this.stanovanja[3] = spodnji;
+        this.sosedi[0] = levi;
+        this.sosedi[1] = zgornji;
+        this.sosedi[2] = desni;
+        this.sosedi[3] = spodnji;
     }
 
     public Oseba starostaSosescine() {
@@ -65,8 +66,8 @@ public class Stanovanje {
         int najStarost = 0;
         Oseba[] najstarejsi = new Oseba[4];
         for (int i = 0; i < 4; i++){
-            if (this.stanovanja[i] != null){
-                najstarejsi[i] = this.stanovanja[i].starosta();
+            if (this.sosedi[i] != null){
+                najstarejsi[i] = this.sosedi[i].starosta();
             }
         }
         for (int i = 0; i < 4; i++){
@@ -81,5 +82,29 @@ public class Stanovanje {
     public Oseba[] sosedjeSosedov() {
         // jutri se ukvarjaj s tem.
         return null;
+    }
+
+    public class Sosedje{
+        private Oseba[] sosedje;
+        private int stOsebVtabeli;
+        private final int increment = 5;
+
+        public Sosedje(Oseba[] stanovalci){
+            stOsebVtabeli = stanovalci.length;
+            sosedje = Arrays.copyOf(stanovalci, stOsebVtabeli + increment);
+        }
+
+        public void dodajSoseda(Oseba sosed){
+            if (stOsebVtabeli >= sosedje.length){
+                this.povecajTabelo();
+            }
+            stOsebVtabeli++;
+            sosedje[stOsebVtabeli] = sosed;
+        }
+
+        private void povecajTabelo(){
+            stOsebVtabeli = sosedje.length;
+            sosedje = Arrays.copyOf(sosedje, sosedje.length + increment);
+        }
     }
 }
