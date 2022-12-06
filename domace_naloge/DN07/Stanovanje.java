@@ -80,8 +80,27 @@ public class Stanovanje {
     }
 
     public Oseba[] sosedjeSosedov() {
-        // jutri se ukvarjaj s tem.
-        return null;
+        Oseba[] rezultat = new Oseba[0];
+        Sosedje sosedje = new Sosedje(rezultat);
+        // iterira cez vse sosede.
+        for (int i = 0; i < 4; i++){
+            if (sosedi[i] == null){
+                continue;
+            }
+            for (int j = i; j < i + 2; j++){
+                if (sosedi[i].sosedi[j % 4] == null){
+                    continue;
+                }
+                sosedje.dodajTabelo(sosedi[i].sosedi[j % 4].vrniStanovalce());
+            }
+        }
+        rezultat = Arrays.copyOf(sosedje.vrniTabeloSosedov(), sosedje.vrniSteviloSosedov());
+        System.out.println(Arrays.toString(rezultat));
+        return rezultat;
+    }
+
+    public Oseba[] vrniStanovalce(){
+        return this.stanovalci;
     }
 
     public class Sosedje{
@@ -96,15 +115,31 @@ public class Stanovanje {
 
         public void dodajSoseda(Oseba sosed){
             if (stOsebVtabeli >= sosedje.length){
-                this.povecajTabelo();
+                this.povecajTabelo(1);
             }
             stOsebVtabeli++;
             sosedje[stOsebVtabeli] = sosed;
         }
 
-        private void povecajTabelo(){
-            stOsebVtabeli = sosedje.length;
-            sosedje = Arrays.copyOf(sosedje, sosedje.length + increment);
+        public void dodajTabelo(Oseba[] vecSosedov){
+            if (stOsebVtabeli + vecSosedov.length >= sosedje.length){
+                this.povecajTabelo(vecSosedov.length);
+            }
+            for (int i = 0; i < vecSosedov.length; i++){
+                this.dodajSoseda(vecSosedov[i]);
+            }
+        }
+
+        private void povecajTabelo(int dodatnaVelikost){
+            sosedje = Arrays.copyOf(sosedje, sosedje.length + increment + dodatnaVelikost);
+        }
+
+        private Oseba[] vrniTabeloSosedov(){
+            return this.sosedje;
+        }
+
+        private int vrniSteviloSosedov(){
+            return this.stOsebVtabeli;
         }
     }
 }
