@@ -21,4 +21,10 @@ public class SlikovnaDatoteka extends Datoteka{
         return velikost;
     }
 
+    public boolean jeVecjeOd(int prag){
+        if (this.visina >= prag && this.sirina >= prag){
+            return true;
+        }
+        return false;
+    }
 }
