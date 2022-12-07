@@ -1,7 +1,7 @@
 public abstract class Datoteka{
     private String ime;
 
-    public Datoteka(String ime){
+    protected Datoteka(String ime){
         this.ime = ime;
     }
 
