@@ -34,4 +34,44 @@ public class Imenik extends Datoteka{
         }
         return j;
     }
+
+    public String poisci(String ime){
+        String izpis = null;
+        for (Datoteka datoteka: this.datoteke){
+            if (datoteka.vrniIme() == ime){
+                return String.format("./%s", ime);
+            }
+        }
+        for (Datoteka datoteka: this.datoteke){
+            if (datoteka instanceof Imenik){
+                Imenik direktorija = (Imenik) datoteka;
+                izpis = direktorija.poisci("./", ime);
+                if (izpis != null){
+                    return izpis;
+                }
+            }
+        }
+        return null;
+    }
+
+    private String poisci(String pot, String ime){
+        String izpis = String.format("%s%s/", pot, super.vrniIme());
+        String rezultat;
+        for (Datoteka datoteka: this.datoteke){
+            if (datoteka.vrniIme() == ime){
+                izpis = String.format("%s%s", izpis, ime);
+                return izpis;
+            }
+        }
+        for (Datoteka datoteka: this.datoteke){
+            if (datoteka instanceof Imenik){
+                Imenik direktorija = (Imenik) datoteka;
+                rezultat = direktorija.poisci(izpis, ime);
+                if (rezultat != null){
+                    return rezultat;
+                }
+            }
+        }
+        return null;
+    }
 }

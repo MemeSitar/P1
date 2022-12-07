@@ -10,4 +10,8 @@ public abstract class Datoteka{
         return delniIzpis;
     };
     public abstract int velikost();
+
+    public String vrniIme(){
+        return this.ime;
+    }
 }
