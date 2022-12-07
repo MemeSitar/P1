@@ -38,7 +38,7 @@ public class Imenik extends Datoteka{
     public String poisci(String ime){
         String izpis = null;
         for (Datoteka datoteka: this.datoteke){
-            if (datoteka.vrniIme() == ime){
+            if (datoteka.vrniIme().equals(ime)){
                 return String.format("./%s", ime);
             }
         }
@@ -55,10 +55,10 @@ public class Imenik extends Datoteka{
     }
 
     private String poisci(String pot, String ime){
-        String izpis = String.format("%s%s/", pot, super.vrniIme());
+        String izpis = String.format("%s%s/", pot, this.vrniIme());
         String rezultat;
         for (Datoteka datoteka: this.datoteke){
-            if (datoteka.vrniIme() == ime){
+            if (datoteka.vrniIme().equals(ime)){
                 izpis = String.format("%s%s", izpis, ime);
                 return izpis;
             }
