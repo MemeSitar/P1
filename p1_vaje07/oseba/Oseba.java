@@ -1,10 +1,10 @@
 public class Oseba{
     private String ime;
     private String priimek;
-    private Char spol;
+    private char spol;
     private int letoRojstva;
-    private Oseba oce;
-    private Oseba mati;
+    public Oseba oce;
+    public Oseba mati;
 
     public Oseba(String ime, String priimek, char spol, int letoRojstva,
         Oseba oce, Oseba mati){
@@ -36,7 +36,7 @@ public class Oseba{
         return letoRojstva;
     }
     public boolean jeStarejsaOd(Oseba os){
-        if (this.letoRojstva < os.vrniLR){
+        if (this.letoRojstva < os.vrniLR()){
             return true;
         }
         return false;
@@ -59,6 +59,32 @@ public class Oseba{
     }
 
     public boolean jeBratAliSestraOd(Oseba os){
-        
+        if (this.oce == os.oce || this.mati == os.mati){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean jeSestraOd(Oseba os){
+        if (this.spol == 'Z' && this.jeBratAliSestraOd(os)){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean jeTetaOd(Oseba os){
+        if (this.jeSestraOd(os.oce) || this.jeSestraOd(os.mati)){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean jeOcetovskiPrednikOd(Oseba os){
+        if (os == this.oce){
+            return true;
+        } else if (this.oce == null){
+            return false;
+        }
+        return this.oce.jeOcetovskiPrednikOd(os);
     }
 }
