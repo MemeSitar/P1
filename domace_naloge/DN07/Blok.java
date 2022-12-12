@@ -1,13 +1,14 @@
 
 public class Blok {
-    private Stanovanje stanovanje;
+    private Stanovanje prvoStanovanje;
+    private Stanovanje[][] stanovanja;
 
     public Blok(Stanovanje stanovanje) {
-        this.stanovanje = stanovanje;
+        this.prvoStanovanje = stanovanje;
     }
 
     public Oseba starosta() {
-        // dopolnite/popravite ...
+        
         return null;
     }
 
