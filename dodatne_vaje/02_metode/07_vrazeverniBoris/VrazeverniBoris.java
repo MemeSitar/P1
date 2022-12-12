@@ -14,7 +14,7 @@ public class VrazeverniBoris{
     }
 
     public static int stPik(Random rand){
-        int stPik = rand.nextInt(5) + 1;
+        int stPik = rand.nextInt(6) + 1;
         return stPik;
     }
 
@@ -26,10 +26,10 @@ public class VrazeverniBoris{
         System.out.printf("%4d ", i);
         if (i % 7 == 0){
             meja = 5;
-            System.out.printf("(N) :");
+            System.out.printf("(N):");
         } else {
             meja = 3;
-            System.out.printf("(D) :");
+            System.out.printf("(D):");
         }
         while (stevec < meja){
             stevec2++;
