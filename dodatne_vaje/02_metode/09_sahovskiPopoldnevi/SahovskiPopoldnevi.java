@@ -23,7 +23,7 @@ public class SahovskiPopoldnevi{
         int zmageA = 0;
         int zmageB = 0;
         int i = 0;
-        char rezultat = ''
+        char rezultat = '';
 
         while (Math.max(zmageA, zmageB) <= stZmag && i < stPartij){
             rezultat = simulirajPartijo(verA, verB, rand);
@@ -31,7 +31,7 @@ public class SahovskiPopoldnevi{
                 case 'A' :
                     zmageA++;
                     break;
-                case 'B'
+                case 'B' :
                     zmageB++;
                     break;
                 case 'r'}
@@ -41,6 +41,17 @@ public class SahovskiPopoldnevi{
     }
 
     public static char simulirajPartijo(int verA, int verB, Random rand){
-        
+        char rezultat = '';
+        int stevilka = 0;
+        stevilka = rand.nextInt(100);
+        if (stevilka < verA){
+            rezultat = 'A';
+        } else if (stevilka >= verA + verB){
+            rezultat = 'r';
+        } else {
+            rezultat = 'B';
+        }
+        System.out.print(rezultat);
+        return rezultat;
     }
 }
