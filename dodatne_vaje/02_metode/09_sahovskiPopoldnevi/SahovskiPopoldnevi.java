@@ -14,8 +14,8 @@ public class SahovskiPopoldnevi{
         int stDni = sc.nextInt();
 
         for (int i = 1; i <= stDni; i++){
-            System.out.printf("%d. dan: ");
-            simulirajDan(verA, verB, rand);
+            System.out.printf("%d. dan: ", i);
+            simulirajDan(verA, verB, rand, stZmag, stPartij);
         }
     }
 
@@ -23,9 +23,9 @@ public class SahovskiPopoldnevi{
         int zmageA = 0;
         int zmageB = 0;
         int i = 0;
-        char rezultat = '';
+        char rezultat = ' ';
 
-        while (Math.max(zmageA, zmageB) <= stZmag && i < stPartij){
+        while (Math.max(zmageA, zmageB) < stZmag && i < stPartij){
             rezultat = simulirajPartijo(verA, verB, rand);
             switch (rezultat){
                 case 'A' :
@@ -34,21 +34,23 @@ public class SahovskiPopoldnevi{
                 case 'B' :
                     zmageB++;
                     break;
-                case 'r'}
+                case 'r' :
+                    break;
+                }
             i++;
         }
         System.out.printf(" (%d)\n", i);
     }
 
     public static char simulirajPartijo(int verA, int verB, Random rand){
-        char rezultat = '';
+        char rezultat = ' ';
         int stevilka = 0;
         stevilka = rand.nextInt(100);
         if (stevilka < verA){
             rezultat = 'A';
-        } else if (stevilka >= verA + verB){
+        } else if (stevilka >= (verA + verB)){
             rezultat = 'r';
-        } else {
+        } else if (stevilka >= verA && stevilka < (verA + verB)){
             rezultat = 'B';
         }
         System.out.print(rezultat);
