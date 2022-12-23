@@ -23,8 +23,31 @@ public abstract class Zaporedje {
     }
 
     public Interval minMax(Interval interval) {
-        // popravite / dopolnite ...
-        return null;
+        int vrednost;
+        int najvecji;
+        int najmanjsi;
+
+
+
+
+        int najvecji = this.y(interval.vrniZacetek());
+        int najmanjsi = this.y(interval.vrniZacetek());
+        int vrednost;
+        for (int i = interval.vrniZacetek(); i <= interval.vrniKonec(); i++){
+            vrednost = this.y(i);
+            if (vrednost == null){
+                continue;
+            }
+            if (vrednost < najmanjsi){
+                najmanjsi = vrednost;
+            }
+            if (vrednost > najvecji){
+                najvecji = vrednost;
+            }
+        }
+        
+        Interval rezultat = new Interval(najmanjsi, najvecji);
+        return rezultat;
     }
 
     public boolean jeMonotono(Interval interval) {
