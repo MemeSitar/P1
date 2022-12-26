@@ -52,6 +52,18 @@ public class Ulomek{
         return this.zmnozek(u.obrat());
     }
 
+    public Ulomek potenca(int eksponent){
+        if (eksponent < 0){
+            eksponent *= -1;
+            return new Ulomek((int) Math.pow(q, eksponent), (int) Math.pow(p, eksponent));
+        }
+        return new Ulomek((int) Math.pow(p, eksponent), (int) Math.pow(q, eksponent));
+    }
+
+    public boolean jeManjsiOd(Ulomek u){
+        return (this.p/this.q < u.p/u.q);
+    }
+
     public static int gcd(int a, int b){
         if (b == 0){
             return a;
