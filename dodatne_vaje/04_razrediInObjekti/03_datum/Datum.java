@@ -48,6 +48,32 @@ public class Datum{
         return false;
     }
 
+    public Datum naslednik(){
+        if (this.toString() == "31.12.2999"){
+            return null;
+        }
+        if (ustvari(this.dan + 1, this.mesec, this.leto) != null){
+            return ustvari(this.dan + 1, this.mesec, this.leto);
+        } else if (ustvari(1, this.mesec + 1, this.leto) != null){
+            return ustvari(1, this.mesec + 1, this.leto);
+        } else {
+            return ustvari(1, 1, this.leto + 1);
+        }
+    }
+
+    public Datum predhodnik(){
+        if (this.toString() == "01.01.1583"){
+            return null;
+        }
+        if (ustvari(this.dan - 1, this.mesec, this.leto) != null){
+            return ustvari(this.dan - 1, this.mesec, this.leto);
+        } else if (ustvari(vrniZadnjiDanVMesecu(mesec - 1, this.leto), this.mesec - 1, this.leto) != null){
+            return ustvari(vrniZadnjiDanVMesecu(mesec - 1, this.leto), this.mesec - 1, this.leto);
+        } else {
+            return ustvari(31, 12, this.leto - 1);
+        }
+    }
+
     private static boolean jePrestopno(int leto){
         return (leto % 400 == 0 || leto % 100 != 0 && leto % 4 == 0);
     }
@@ -62,6 +88,14 @@ public class Datum{
             return false;
         }
         return true;
+    }
 
+    private static int vrniZadnjiDanVMesecu(int mesec, int leto){
+        int feb = 28;
+        if (jePrestopno(leto)){
+            feb = 29;
+        }
+        int[] tabelaDni = new int[]{0, 31, feb, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        return tabelaDni[mesec];
     }
 }
