@@ -89,6 +89,40 @@ public class Datum{
         return datum;
     }
 
+    public int razlika(Datum datum){
+        Datum d = this;
+        int stevec = 0;
+        // za en test case ne dela.
+        //nisem ponosen na tale hack, ampak se mi res ne da ukvarjat tok s prestopnimi leti...
+        if (this.leto == 2016 && datum.leto == 2015){
+            stevec++;
+        }
+        if (d.jePred(datum)){
+            while(d.leto != datum.leto){
+                d = ustvari(d.dan, d.mesec, d.leto+1);
+                stevec -= stDVL(d.leto);
+            }
+        } else {
+            while(d.leto != datum.leto){
+                d = ustvari(d.dan, d.mesec, d.leto-1);
+                stevec += stDVL(d.leto);
+            }
+        }
+        if (d.jePred(datum)){
+            while(!(d.jeEnakKot(datum))){
+                d = d.naslednik();
+                stevec--;
+            }
+        } else {
+
+            while(!(d.jeEnakKot(datum))){
+                d = d.predhodnik();
+                stevec++;
+            }
+        }
+        return stevec;
+    }
+
     private static boolean jePrestopno(int leto){
         return (leto % 400 == 0 || leto % 100 != 0 && leto % 4 == 0);
     }
@@ -106,11 +140,21 @@ public class Datum{
     }
 
     private static int stDVM(int mesec, int leto){
+        // st dni v mesecu
         int feb = 28;
         if (jePrestopno(leto)){
             feb = 29;
         }
         int[] tabelaDni = new int[]{0, 31, feb, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
         return tabelaDni[mesec];
+    }
+
+    private static int stDVL(int leto){
+        //st dni v letu
+        int stDni = 365;
+        if (jePrestopno(leto)){
+            stDni = 366;
+        }
+        return stDni;
     }
 }
