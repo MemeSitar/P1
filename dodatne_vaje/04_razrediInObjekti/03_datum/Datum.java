@@ -67,11 +67,26 @@ public class Datum{
         }
         if (ustvari(this.dan - 1, this.mesec, this.leto) != null){
             return ustvari(this.dan - 1, this.mesec, this.leto);
-        } else if (ustvari(vrniZadnjiDanVMesecu(mesec - 1, this.leto), this.mesec - 1, this.leto) != null){
-            return ustvari(vrniZadnjiDanVMesecu(mesec - 1, this.leto), this.mesec - 1, this.leto);
+        } else if (ustvari(stDVM(mesec - 1, this.leto), this.mesec - 1, this.leto) != null){
+            return ustvari(stDVM(mesec - 1, this.leto), this.mesec - 1, this.leto);
         } else {
             return ustvari(31, 12, this.leto - 1);
         }
+    }
+
+    public Datum cez(int stDni){
+        Datum datum = this;
+        if (stDni > 0){
+            for (int i = 0; i < stDni; i++){
+            datum = datum.naslednik();
+            }
+        } else {
+            stDni *= -1;
+            for (int i = 0; i < stDni; i++){
+                datum = datum.predhodnik();
+            }
+        }
+        return datum;
     }
 
     private static boolean jePrestopno(int leto){
@@ -90,7 +105,7 @@ public class Datum{
         return true;
     }
 
-    private static int vrniZadnjiDanVMesecu(int mesec, int leto){
+    private static int stDVM(int mesec, int leto){
         int feb = 28;
         if (jePrestopno(leto)){
             feb = 29;
