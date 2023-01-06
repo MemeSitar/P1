@@ -54,11 +54,23 @@ public class StiriVVrsto{
         if (stevec > rezultat){
             rezultat = stevec;
         }
-        stevec = najdaljeZaporedjeDiagonale(igralec);
+        stevec = this.najdaljseZaporedjeDiagonale(igralec);
         if (stevec > rezultat){
             rezultat = stevec;
         }
         return rezultat;
+    }
+
+    public int izid(){
+        int rezultat0 = this.najdaljseZaporedje(0);
+        int rezultat1 = this.najdaljseZaporedje(1);
+        if (rezultat0 > 3 && rezultat1 < 4){
+            return 0;
+        } else if (rezultat0 < 4 && rezultat1 > 3){
+            return 1;
+        } else {
+            return -1;
+        }
     }
 
     private int najdaljseZaporedjeVrstice(int igralec){
@@ -105,10 +117,36 @@ public class StiriVVrsto{
         return rezultat;
     }
 
-    private int najdaljeZaporedjeDiagonale(int igralec){
+    private int najdaljseZaporedjeDiagonale(int igralec){
+        // ful faking annoying ane
+        // rocno pisat algoritem za tale drek...
         int rezultat = 0;
         int stevec = 0;
-        
+        // prva diagonala.
+        for (int k = 0; k <= (stStolpcev + stVrstic - 2); k++){
+            for (int i = Math.min(k, stVrstic - 1); i <= stVrstic -1; i++){
+                stevec = 0;
+                for (int j = Math.min(k, stStolpcev - 1); j <= stStolpcev -1; j++){
+                    if (this.vsebina(k - j, j) == igralec){
+                        stevec++;
+                    } else {
+                        if (stevec > rezultat){
+                            rezultat = stevec;
+                        }
+                        stevec = 0;
+                    }
+                }
+                if (stevec > rezultat){
+                    rezultat = stevec;
+                }
+            }
+        }
+        // pa se druga diagonala...
+        for (int k = 0; k <= (stStolpcev + stVrstic -2); k++){
+            while (j >= 0 && )
+        }
+
+        return rezultat;
     }
 
     private void zamenjajIgralca(){
