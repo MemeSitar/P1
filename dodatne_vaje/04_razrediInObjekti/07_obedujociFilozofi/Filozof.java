@@ -79,7 +79,7 @@ public class Filozof {
 
     public int steviloFilozofov(){
         Filozof prvi = this;
-        int rezultat = 0;
+        int rezultat = 1;
         Filozof f = this.desni;
         while (!f.equals(prvi)){
             rezultat++;
