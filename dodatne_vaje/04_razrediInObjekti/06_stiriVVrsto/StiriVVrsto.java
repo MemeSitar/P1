@@ -46,7 +46,72 @@ public class StiriVVrsto{
         }
     }
 
-    public void zamenjajIgralca(){
+    public int najdaljseZaporedje(int igralec){
+        int rezultat = 0;
+        int stevec = 0;
+        rezultat = this.najdaljseZaporedjeVrstice(igralec);
+        stevec = this.najdaljseZaporedjeStolpci(igralec);
+        if (stevec > rezultat){
+            rezultat = stevec;
+        }
+        stevec = najdaljeZaporedjeDiagonale(igralec);
+        if (stevec > rezultat){
+            rezultat = stevec;
+        }
+        return rezultat;
+    }
+
+    private int najdaljseZaporedjeVrstice(int igralec){
+        int rezultat = 0;
+        int stevec = 0;
+        for (int j = 0; j < this.vrniSteviloVrstic(); j++){
+            stevec = 0;
+            for (int i = 0; i < this.vrniSteviloStolpcev(); i++){
+                if (this.vsebina(j, i) == igralec){
+                    stevec++;
+                } else {
+                    if (stevec > rezultat){
+                        rezultat = stevec;
+                    }
+                    stevec = 0;
+                }
+            }
+            if (stevec > rezultat){
+                rezultat = stevec;
+            }
+        }
+        return rezultat;
+    }
+
+    private int najdaljseZaporedjeStolpci(int igralec){
+        int rezultat = 0;
+        int stevec = 0;
+        for (int i = 0; i < this.vrniSteviloStolpcev(); i++){
+            stevec = 0;
+            for (int j = 0; j < this.vrniSteviloVrstic(); j++){
+                if (this.vsebina(j, i) == igralec){
+                    stevec++;
+                } else {
+                    if (stevec > rezultat){
+                        rezultat = stevec;
+                    }
+                    stevec = 0;
+                }
+            }
+            if (stevec > rezultat){
+                rezultat = stevec;
+            }
+        }
+        return rezultat;
+    }
+
+    private int najdaljeZaporedjeDiagonale(int igralec){
+        int rezultat = 0;
+        int stevec = 0;
+        
+    }
+
+    private void zamenjajIgralca(){
         if (trenutniIgralec == 0){
             trenutniIgralec = 1;
         } else if (trenutniIgralec == 1){
@@ -54,7 +119,7 @@ public class StiriVVrsto{
         }
     }
 
-    public boolean stolpecPoln(int stolpec){
+    private boolean stolpecPoln(int stolpec){
         for (int i = 0; i < this.vrniSteviloVrstic(); i++){
             if (this.polje[i][stolpec] == 0){
                 return false;
@@ -63,7 +128,7 @@ public class StiriVVrsto{
         return true;
     }
 
-    public void dodajVStolpec(int stolpec, int trenutniIgralec){
+    private void dodajVStolpec(int stolpec, int trenutniIgralec){
         for (int i = 0; i < stVrstic; i++){
             if (polje[i][stolpec] == 0){
                 polje[i][stolpec] = trenutniIgralec + 100;
@@ -72,7 +137,7 @@ public class StiriVVrsto{
         }
     }
 
-    public void print(){
+    private void print(){
         for (int i = this.vrniSteviloVrstic() - 1; i >= 0; i--){
             System.out.println(Arrays.toString(polje[i]));
         }
