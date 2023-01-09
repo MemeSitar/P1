@@ -23,6 +23,10 @@ public class Tretja {
         public double vrniY() {
             return this.y;
         }
+
+        public double razdaljaDo(Tocka t){
+            return Math.sqrt(Math.pow(this.x - t.vrniX(), 2) + Math.pow(this.y - t.vrniY(), 2));
+        }
     }
 
     public static class Najdba {
@@ -63,8 +67,13 @@ public class Tretja {
         }
 
         public String[] najditelji() {
-            // popravite / dopolnite ...
-            return null;
+            String[] najditelji = new String[najdbe.length];
+            int stevec = 0;
+            for (Najdba n : najdbe){
+                najditelji[stevec] = n.vrniNajditelja();
+                stevec++;
+            }
+            return najditelji;
         }
 
         @Override
@@ -85,13 +94,27 @@ public class Tretja {
         }
 
         public double pot(Tocka zacetna) {
-            // popravite / dopolnite ...
-            return -1.0;
+            double rezultat = zacetna.razdaljaDo(zakladi[0].vrniPolozaj());
+            for (int i = 1; i < zakladi.length; i++){
+                rezultat += zakladi[i].vrniPolozaj().razdaljaDo(zakladi[i-1].vrniPolozaj());
+            }
+            rezultat += zacetna.razdaljaDo(zakladi[zakladi.length - 1].vrniPolozaj());
+            return rezultat;
         }
 
         public Zaklad nazadnjeOdkrit() {
-            // popravite / dopolnite ...
-            return null;
+            int najvecjiCas = 0;
+            Zaklad rezultat = null;
+            for (Zaklad z : zakladi){
+                if (z.vrniNajdbe().length == 0){
+                    continue;
+                }
+                if (z.vrniNajdbe()[0].vrniCas() > najvecjiCas){
+                    najvecjiCas = z.vrniNajdbe()[0].vrniCas();
+                    rezultat = z;
+                }
+            }
+            return rezultat;
         }
     }
 
