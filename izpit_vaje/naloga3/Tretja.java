@@ -42,29 +42,53 @@ public class Tretja {
 
     public static class Tiskalnik {
 
-        // atributi (po potrebi) ...
+        private LinkedList<String> profesorji;
+        private LinkedList<String> docenti;
+        private LinkedList<String> asistenti;
 
         public Tiskalnik() {
-            // dopolnite ...
+            profesorji = new LinkedList<>();
+            docenti = new LinkedList<>();
+            asistenti = new LinkedList<>();
+
         }
 
         public void prejmi(Pedagog pedagog, String dokument) {
-            // dopolnite ...
+            if (pedagog instanceof Profesor){
+                profesorji.add(dokument);
+            } else if (pedagog instanceof Docent){
+                docenti.add(dokument);
+            } else if (pedagog instanceof Asistent){
+                asistenti.add(dokument);
+            }
         }
 
         public int dolzinaVrste() {
-            // popravite / dopolnite ...
-            return -1;
+            int rezultat = 0;
+            rezultat = profesorji.size() + asistenti.size() + docenti.size();
+            return rezultat;
         }
 
         public int steviloDokumentov(Pedagog pedagog) {
-            // popravite / dopolnite ...
+            if (pedagog instanceof Profesor){
+                return profesorji.size();
+            } else if (pedagog instanceof Docent){
+                return docenti.size();
+            } else if (pedagog instanceof Asistent){
+                return asistenti.size();
+            }
             return -1;
         }
 
         public String natisni() {
-            // popravite / dopolnite ...
-            return "";
+            if (!profesorji.isEmpty()){
+                return profesorji.remove();
+            } else if (!docenti.isEmpty()){
+                return docenti.remove();
+            } else if (!asistenti.isEmpty()){
+                return asistenti.remove();
+            }
+            return null;
         }
 
     }
